@@ -4,7 +4,7 @@ Trabalho desenvolvido durante a disciplina de BD1
 # Sumário
 
 ### 1. COMPONENTES<br>
-Integrantes do grupo<br>
+Integrantes do grupo:<br>
 Antonio Felipe Gavazza: gavazzantonio@gmail.com <br>
 <br>
 
@@ -12,7 +12,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com <br>
 Este documento contém a especificação do projeto do banco de dados <nome do projeto> 
 <br>e motivação da escolha realizada. <br>
 
-> A motivação por trás do sistema Smart Shop é proporcionar uma experiência de compra inovadora e conveniente para os clientes, permitindo que eles tenham a liberdade de escolher como desejam fazer suas compras, seja pessoalmente na loja física ou online através da plataforma digital, e garantindo a melhor experiência de compra independentemente do canal escolhido. Já para o proprietário da loja, o sistema Smart Shop é uma solução abrangente de gerenciamento de vendas presenciais/online, estoque e clientes e oferece uma visão em tempo real das operações, permitindo tomar decisões estratégicas com base em dados precisos, portanto, a Smart Shop pretende transformar a experiência de compra e venda, fornecendo conveniência, flexibilidade e qualidade tanto para os clientes quanto para os lojistas.
+> A motivação por trás do sistema Smart Shop é proporcionar uma experiência de compra inovadora e conveniente para os clientes, permitindo que eles tenham a liberdade de escolher como desejam fazer suas compras, seja pessoalmente na loja física ou online através da plataforma digital. Garantindo a melhor experiência de compra independentemente do canal escolhido. Já para o proprietário da loja, o sistema Smart Shop é uma solução abrangente de gerenciamento de vendas presenciais/online, estoque e clientes, oferecendo uma visão em tempo real das operações, permitindo tomar decisões estratégicas com base em dados precisos e, portanto, a Smart Shop pretende transformar a experiência de compra e venda, fornecendo conveniência, flexibilidade e qualidade para os clientes e vendedores.
  
 
 ### 3.MINI-MUNDO<br>
@@ -23,7 +23,13 @@ Descrição textual das regras de negócio definidas como um  subconjunto do mun
 cujos elementos são propriedades que desejamos incluir, processar, armazenar, 
 gerenciar, atualizar, e que descrevem a proposta/solução a ser desenvolvida.
 
-> O sistema proposto para a "Devcom Projetos conterá as informacões aqui detalhadas. Dos Projetos serão armazenados o número, nome e cidade. Dos Departamentos serão armazenados o número e nome. O cliente destacou que cada projeto pode ter vários departamentos auxiliando no seu desenvolvimento, e cada departamento pode estar envolvido em vários projetos. Os dados relativos aos empregados que serão armazenados são: rg, nome, cpf, salário, data inicial do salario e supervisor de cada empregado. É importante destacar que cada empregado pode ser supervisionado por outro empregado, e obrigatoriamente deve estar alocado a um único departamento, mas pode gerenciar vários departamentos ou não gerenciar nenhum. Um empregado também pode participar de vários projetos, caso seja necessário, mas não precisa obrigatoriamente estar alocado em algum projeto. Com relação aos dependentes serão armazenadas as informações de nome do dependente, data de nascimento, sexo e grau de parentesco. Cada empregado pode ter vários dependentes, mas um dependente esta associado apenas a um único empregado. Com relação ao histórico de salário devemos armazenar as informações de valor do salário, data de início do salário no período e data final do salário no período. É importante lembrar que cada funcionario pode ter diversos eventos de histórico de salário associados a ele visto que este dado pode ser alterado várias vezes. 
+> Com o sistema Smart Shop os clientes têm a opção de fazer compras tanto presencialmente quanto online. Presencialmente, os clientes podem caminhar pelos corredores, escolher os produtos que desejam e levá-los aos terminais de autoatendimento para pagamento e na plataforma online os clientes podem acessar via site ou aplicativo, navegar pelos produtos disponíveis, adicioná-los ao carrinho e finalizar a compra. Para isso há um sistema de gerenciamento de estoque que integra a loja física e a plataforma online atualizando o estoque em tempo real quando um produto é vendido, evitando vendas duplicadas ou produtos fora de estoque. Dos produtos serão armazenados o identificador, categoria, tipo, nome, marca, peso, descrição, código de barras, quantidade, valor, fornecedor, contato do fornecedor e disponibilidade do fornecedor. 
+<br><br> 
+Tanto nas compras presenciais quanto online, o sistema processa os pagamentos de forma segura. O cliente pode escolher pagar com cartões de crédito/débito ou por transferências bancária (PIX). Ao realizar pagamentos via cartão de crédito o cliente pode salvar os dados utilizados para compras futuras, dessa forma, o sistema armazena para cada cartão um identificador, descrição, número do cartão, nome do titular, data de vencimento, código de verificação, CPF do titular e endereço de cobrança. 
+<br><br> 
+Estes cartões podem ser gerenciados através do sistema de gerenciamento de clientes que permite a sistema/gerência personalizar a experiência do cliente com a recomendação de produtos relevantes e ofertas exclusivas. Para isso, dos clientes, são armazenados além dos dados dos cartões, o seu identificador, nome, CPF, data de nascimento, telefone, e-mail, endereço, cartões e o seu histórico de compras. 
+<br><br> 
+Já para a equipe, o sistema fornece um painel intuitivo onde é exibido informações em tempo real das vendas, do estoque atual, das tendências de compra e dos clientes a depender do perfil de usuário, o sistema exibe também relatórios para a análise de desempenho do negócio. Dos funcionários são registrados o identificador, nome, CPF, data de nascimento, telefone, email, endereço, departamento, atribuição, escala, salário e conta para transferências bancária (PIX). 
 
 ### 4.PROTOTIPAÇÃO, PERGUNTAS A SEREM RESPONDIDAS E TABELA DE DADOS<br>
 #### 4.1 RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS)<br>
