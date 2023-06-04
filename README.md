@@ -4,12 +4,11 @@ Trabalho desenvolvido durante a disciplina de BD1
 # Sumário
 
 ### 1. COMPONENTES<br>
-Integrantes do grupo:<br>
 Antonio Felipe Gavazza: gavazzantonio@gmail.com <br>
 <br>
 
 ### 2.INTRODUÇÃO E MOTIVAÇÃO<br>
-Este documento contém a especificação do projeto do banco de dados <nome do projeto> 
+Este documento contém a especificação do projeto do banco de dados Smart Shop 
 <br>e motivação da escolha realizada. <br>
 
 > A motivação por trás do sistema Smart Shop é proporcionar uma experiência de compra inovadora e conveniente para os clientes, permitindo que eles tenham a liberdade de escolher como desejam fazer suas compras, seja pessoalmente na loja física ou online através da plataforma digital. Garantindo a melhor experiência de compra independentemente do canal escolhido. Já para o proprietário da loja, o sistema Smart Shop é uma solução abrangente de gerenciamento de vendas presenciais/online, estoque e clientes, oferecendo uma visão em tempo real das operações, permitindo tomar decisões estratégicas com base em dados precisos e, portanto, a Smart Shop pretende transformar a experiência de compra e venda, fornecendo conveniência, flexibilidade e qualidade para os clientes e vendedores.
@@ -18,7 +17,6 @@ Este documento contém a especificação do projeto do banco de dados <nome do p
 ### 3.MINI-MUNDO<br>
 
 Descrever o mini-mundo! (Não deve ser maior do que 30 linhas, se necessário resumir para justar) <br>
-Entrevista com o usuário e identificação dos requisitos.(quando for o caso de sistemas com cliente  real)<br>
 Descrição textual das regras de negócio definidas como um  subconjunto do mundo real 
 cujos elementos são propriedades que desejamos incluir, processar, armazenar, 
 gerenciar, atualizar, e que descrevem a proposta/solução a ser desenvolvida.
@@ -38,7 +36,7 @@ Neste ponto a codificação não e necessária, somente as ideias de telas devem
 Sugestão: https://balsamiq.com/products/mockups/<br>
 
 ![Alt text](https://github.com/discipbd1/trab01/blob/master/balsamiq.png?raw=true "Title")
-![Arquivo PDF do Protótipo Balsamiq feito para Empresa Devcom](https://github.com/discipbd1/trab01/blob/master/arquivos/EmpresaDevcom.pdf?raw=true "Empresa Devcom")
+![Arquivo PDF do Protótipo Balsamiq feito para Empresa Devcom](https://github.com/discipbd1/trab01/blob/master/arquivos/smartshop.pdf?raw=true "Smart Shop")
 #### 4.2 QUAIS PERGUNTAS PODEM SER RESPONDIDAS COM O SISTEMA PROPOSTO?
     a) O sistema proposto poderá fornecer quais tipos de relatórios e informaçes? 
     b) Crie uma lista com os 5 principais relatórios que poderão ser obtidos por meio do sistema proposto!
