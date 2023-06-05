@@ -42,11 +42,11 @@ Sugestão: https://balsamiq.com/products/mockups/<br>
     b) Crie uma lista com os 5 principais relatórios que poderão ser obtidos por meio do sistema proposto!
     
 > A Smart Shop precisa inicialmente dos seguintes relatórios:
+* Relatório que exiba o catálogo dos produtos disponíveis com o nome, marca, quantidade e preço.
 * Relatório que exiba o faturamento total, da loja física e da plataforma online em um determinado período.
 * Relatório que exiba a quantidade de funcionários por departamento.
 * Relatório que exiba os produtos que podem acabar vencendo de acordo com a demanda atual.
 * Relatório que exiba quais serão os próximos pedidos aos fornecedores de acordo com a demanda atual.
-
 
  
 #### 4.3 TABELA DE DADOS DO SISTEMA:
