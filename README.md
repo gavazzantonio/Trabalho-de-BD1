@@ -1,94 +1,144 @@
-# TRABALHO 01:  Smart Shop
+# TRABALHO 01:  Stock&Shop
 Trabalho desenvolvido durante a disciplina de BD1
 
 # Sumário
 
 ### 1. COMPONENTES<br>
-Antonio Felipe Gavazza: gavazzantonio@gmail.com <br>
-<br>
+Antonio Felipe Gavazza: gavazzantonio@gmail.com 
 
-### 2.INTRODUÇÃO E MOTIVAÇÃO<br>
-Este documento contém a especificação do projeto do banco de dados Smart Shop 
-<br>e motivação da escolha realizada. <br>
+<br><br>
+### 2. INTRODUÇÃO E MOTIVAÇÃO<br>
+> A motivação por trás do Stock&Shop é proporcionar uma solução abrangente para empresas que buscam gerenciar seu estoque de forma eficiente, ao mesmo tempo em que integram suas operações de venda física e online. Esse tipo de integração se tornou fundamental para atender às expectativas dos clientes, oferecer uma experiência de compra consistente e maximizar as oportunidades de vendas.
+> <br><br>
+> Com a expansão do comércio eletrônico, as empresas enfrentam o desafio de sincronizar seus estoques entre suas lojas físicas e suas plataformas online. A falta de integração pode levar a problemas como vendas duplicadas, falta de produtos em estoque, erros de inventário e insatisfação do cliente. Portanto, a criação desse sistema visa superar essas dificuldades, permitindo que as empresas gerenciem seu estoque centralizado, atualizem os níveis de inventário em tempo real e sincronizem automaticamente as informações de venda tanto para as lojas físicas quanto para as vendas online.
+> <br><br> 
+> Além disso, o Stock&Shop oferece recursos para monitorar o desempenho de vendas, rastrear pedidos, gerar relatórios e análises de estoque e vendas, facilitando a tomada de decisões estratégicas. Com uma visão integrada de seu estoque, vendas e clientes, as empresas podem identificar tendências, ajustar seus inventários de acordo com a demanda, otimizar seus processos logísticos e desenvolver campanhas melhor direcionadas.
 
-> A motivação por trás do sistema Smart Shop é proporcionar uma experiência de compra inovadora e conveniente para os clientes, permitindo que eles tenham a liberdade de escolher como desejam fazer suas compras, seja pessoalmente na loja física ou online através da plataforma digital. Garantindo a melhor experiência de compra independentemente do canal escolhido. Já para o proprietário da loja, o sistema Smart Shop é uma solução abrangente de gerenciamento de vendas presenciais/online, estoque e clientes, oferecendo uma visão em tempo real das operações, permitindo tomar decisões estratégicas com base em dados precisos e, portanto, a Smart Shop pretende transformar a experiência de compra e venda, fornecendo conveniência, flexibilidade e qualidade para os clientes e vendedores.
- 
+<br><br>
+### 3. MINI-MUNDO
+> O sistema Stock&Shop, gerencia diferentes estruturas da empresa e suas respectivas características. Temos os funcionários da loja, que são identificados por um ID único, assim como todos os elementos dentro do sistema, e do funcionário, são armazenados também o nome, email, telefone e a sua ocupação. Também temos os clientes, que têm um ID, e precisamos armazenar o CPF, nome, email, telefone e data de nascimento.
+> <br><br>
+> Os pedidos são uma importante parte do sistema, cada pedido é identificado com um ID, e são registrados a data de realização, o valor total da compra (que é a soma da multiplicação do valor de cada produto pela quantidade do mesmo, já que um pedido precisa ter pelo menos uma unidade de pelo menos um produto, mas um pedido aceita multiplos produtos e quantidades também), informações do cartão de crédito (número, titular, validade e código), além de informações de endereço, como tipo (rua, avenida, etc.), logradouro, número, bairro, cidade, estado, CEP e complemento. Um cliente, após o seu cadastro, pode realizar nenhum ou vários pedidos com cada pedido sendo atrelado a um único cliente.
+> <br><br>
+> Todos os produtos vendidos estão identificados no sistema com um ID e seu nome, valor de venda e a quantidade mínima que deve ter em estoque deste produto. Cada produto tem uma marca específica, que também possui um ID e nome e estas marcas podem ter nenhum ou vários produtos cadastrados no sistema. Além disso, os produtos também estão associados a categorias, e uma categoria pode conter nenhum ou vários produtos, cada categoria possui um ID e nome e uma categoria pode conter outras categorias, formando uma estrutura hierárquica onde cada subcategoria possui uma categoria-mãe.
+> <br><br>
+> Para controlar o estoque, cada item armazenado representa um único produto, mas pode haver produtos fora de estoque, cada item possui um ID próprio e é registrado com a sua a data de entrada, data de vencimento (se houver), o valor de aquisição e a informação de se o item está disponível no estoque e se foi devolvido (neste caso também é armazenado o motivo da devolução). O estoque é suprido pelos fornecedores, e cada um tem um ID no sistema, junto de seu CNPJ, nome, email, telefone e frequência de fornecimento em dias. Cada item do estoque é fornecido por um único fornecedor, e um fornecedor pode fornecer nenhum ou vários itens do estoque.
+> <br><br>
+> E temos, para utilização do sistema, o registro de usuários que podem estar atrelado a um cliente ou funcionário. Cada usuário tem um ID, nome de usuário, senha e pode ter diferentes papéis no sistema, como comprador, operador ou gerente. Um cliente ou funcionário só pode ser vinculado a um único usuário.
 
-### 3.MINI-MUNDO<br>
-
-Descrever o mini-mundo! (Não deve ser maior do que 30 linhas, se necessário resumir para justar) <br>
-Descrição textual das regras de negócio definidas como um  subconjunto do mundo real 
-cujos elementos são propriedades que desejamos incluir, processar, armazenar, 
-gerenciar, atualizar, e que descrevem a proposta/solução a ser desenvolvida.
-
-> Com o sistema Smart Shop os clientes têm a opção de fazer compras tanto presencialmente quanto online. Presencialmente, os clientes podem caminhar pelos corredores, escolher os produtos que desejam e levá-los aos terminais de autoatendimento para pagamento e na plataforma online os clientes podem acessar via site ou aplicativo, navegar pelos produtos disponíveis, adicioná-los ao carrinho e finalizar a compra. Para isso há um sistema de gerenciamento de estoque que integra a loja física e a plataforma online atualizando o estoque em tempo real quando um produto é vendido, evitando vendas duplicadas ou produtos fora de estoque. Dos produtos serão armazenados o identificador, categoria, tipo, nome, marca, peso, descrição, código de barras, quantidade, valor, fornecedor, contato do fornecedor e disponibilidade do fornecedor. 
 <br><br> 
-Tanto nas compras presenciais quanto online, o sistema processa os pagamentos de forma segura. O cliente pode escolher pagar com cartões de crédito/débito ou por transferências bancária (PIX). Ao realizar pagamentos via cartão de crédito o cliente pode salvar os dados utilizados para compras futuras, dessa forma, o sistema armazena para cada cartão um identificador, descrição, número do cartão, nome do titular, data de vencimento, código de verificação, CPF do titular e endereço de cobrança. 
-<br><br> 
-Estes cartões podem ser gerenciados através do sistema de gerenciamento de clientes que permite a sistema/gerência personalizar a experiência do cliente com a recomendação de produtos relevantes e ofertas exclusivas. Para isso, dos clientes, são armazenados além dos dados dos cartões, o seu identificador, nome, CPF, data de nascimento, telefone, e-mail, endereço, cartões e o seu histórico de compras. 
-<br><br> 
-Já para a equipe, o sistema fornece um painel intuitivo onde é exibido informações em tempo real das vendas, do estoque atual, das tendências de compra e dos clientes a depender do perfil de usuário, o sistema exibe também relatórios para a análise de desempenho do negócio. Dos funcionários são registrados o identificador, nome, CPF, data de nascimento, telefone, email, endereço, departamento, atribuição, escala, salário e conta para transferências bancária (PIX). 
-
-### 4.PROTOTIPAÇÃO, PERGUNTAS A SEREM RESPONDIDAS E TABELA DE DADOS<br>
-#### 4.1 RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS)<br>
-Neste ponto a codificação não e necessária, somente as ideias de telas devem ser criadas, o princípio aqui é pensar na criação da interface para identificar possíveis informações a serem armazenadas ou descartadas <br>
-
-Sugestão: https://balsamiq.com/products/mockups/<br>
-
+### 4.PROTOTIPAÇÃO, PERGUNTAS A SEREM RESPONDIDAS E TABELA DE DADOS:
+#### 4.1 RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS):
 ![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/images/balsamiq.png?raw=true "Title")
 ![Arquivo PDF do Protótipo Balsamiq feito para Smart Shop](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/arquivos/smartshop.pdf?raw=true "Smart Shop")
-#### 4.2 QUAIS PERGUNTAS PODEM SER RESPONDIDAS COM O SISTEMA PROPOSTO?
-    a) O sistema proposto poderá fornecer quais tipos de relatórios e informaçes? 
-    b) Crie uma lista com os 5 principais relatórios que poderão ser obtidos por meio do sistema proposto!
-    
-> A Smart Shop precisa inicialmente dos seguintes relatórios:
-* Relatório que exiba o catálogo dos produtos disponíveis com o nome, marca, quantidade e preço.
-* Relatório que exiba o faturamento total, da loja física e da plataforma online em um determinado período.
-* Relatório que exiba a quantidade de funcionários por departamento.
-* Relatório que exiba os produtos que podem acabar vencendo de acordo com a demanda atual.
-* Relatório que exiba quais serão os próximos pedidos aos fornecedores de acordo com a demanda atual.
 
- 
+<br> <br> 
+#### 4.2 QUAIS PERGUNTAS PODEM SER RESPONDIDAS COM O SISTEMA PROPOSTO?
+> O Stock&Shop fornece, inicialmente, os seguintes relatórios:
+* Relatório de vendas por período  -  apresenta informações sobre os pedidos realizados em um determinado período, incluindo o valor total das vendas, a quantidade de produtos vendidos e as informações dos clientes.
+* Relatório de estoque  -  fornece uma visão geral do estoque atual, incluindo a quantidade disponível de cada produto, a data de compra e de vencimentos, o valor de compra e informações dos fornecedores.
+* Relatório de clientes ativos  -  lista os clientes que realizaram pedidos recentemente, mostrando seus dados pessoais, quantidade de compras no período e valor total gasto.
+* Relatório de produtos mais vendidos  -  lista os produtos que tiveram maior volume de vendas em um determinado período, fornecendo informações sobre o produto, a quantidade vendida, o valor total arrecadado.
+* Relatório de retorno de produtos  -  fornece informações sobre os produtos devolvidos, o motivo da devolução, o número de devoluções por período, o valor total dos produtos devolvidos.
+
+<br> <br> 
 #### 4.3 TABELA DE DADOS DO SISTEMA:
     a) Esta tabela deve conter todos os atributos do sistema e um mínimo de 10 linhas/registros de dados.
-    b) Esta tabela tem a intenção de simular um relatório com todos os dados que serão armazenados 
+![Tabela de dados do sistema Stock&Shop](https://github.com/discipbd1/trab01/blob/master/arquivos/TabelaEmpresaDevCom_sample.xlsx?raw=true "Tabela - Empresa Devcom")
+
+<br><br>
+### 5. MODELO CONCEITUAL:
+![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/conceitual%20v1752.png "Modelo Conceitual")
     
-![Exemplo de Tabela de dados da Empresa Devcom](https://github.com/discipbd1/trab01/blob/master/arquivos/TabelaEmpresaDevCom_sample.xlsx?raw=true "Tabela - Empresa Devcom")
-    
-    
-### 5.MODELO CONCEITUAL<br>
-    A) Utilizar a Notação adequada (Preferencialmente utilizar o BR Modelo 3)
-    B) O mínimo de entidades do modelo conceitual pare este trabalho será igual a 3 e o Máximo 5.
-        * informe quais são as 3 principais entidades do sistema em densenvolvimento<br>(se houverem mais de 3 entidades, pense na importância da entidade para o sistema)       
-    C) Principais fluxos de informação/entidades do sistema (mínimo 3). <br>Dica: normalmente estes fluxos estão associados as tabelas que conterão maior quantidade de dados 
-    D) Qualidade e Clareza
-        Garantir que a semântica dos atributos seja clara no esquema (nomes coerentes com os dados).
-        Criar o esquema de forma a garantir a redução de informação redundante, possibilidade de valores null, 
-        e tuplas falsas (Aplicar os conceitos de normalização abordados).   
-        
-![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/images/conveitual6052.png?raw=true "Modelo Conceitual")
-    
-    
-        
-    
+<br><br> 
 #### 5.1 Validação do Modelo Conceitual
     [Grupo01]: [Nomes dos que participaram na avaliação]
     [Grupo02]: [Nomes dos que participaram na avaliação]
 
+<br><br> 
 #### 5.2 Descrição dos dados 
-    [objeto]: [descrição do objeto]
+    FUNCIONARIO: Tabela que armazena as informações relativas aos funcionários da empresa.
+    id: campo que armazena o ID único do funcionário.
+    nome: campo que armazena o nome do funcionário.
+    email: campo que armazena o endereço de email do funcionário.
+    telefone: campo que armazena o número de telefone do funcionário.
+    ocupacao: campo que armazena a ocupação ou cargo do funcionário na empresa.
     
-    EXEMPLO:
-    CLIENTE: Tabela que armazena as informações relativas ao cliente<br>
-    CPF: campo que armazena o número de Cadastro de Pessoa Física para cada cliente da empresa.<br>
+    CLIENTE: Tabela que armazena as informações relativas aos clientes da empresa.
+    id: campo que armazena o ID único do cliente.
+    cpf: campo que armazena o número do Cadastro de Pessoa Física (CPF) do cliente.
+    nome: campo que armazena o nome do cliente.
+    email: campo que armazena o endereço de email do cliente.
+    telefone: campo que armazena o número de telefone do cliente.
+    nascimento: campo que armazena a data de nascimento do cliente.
+    
+    PEDIDO: Tabela que armazena as informações relativas aos pedidos realizados pelos clientes.
+    id: campo que armazena o ID único do pedido.
+    data: campo que armazena a data de realização do pedido.
+    valor: campo que armazena o valor total do pedido.
+    cartao_numero: campo que armazena o número do cartão de crédito utilizado no pedido.
+    cartao_titular: campo que armazena o nome do titular do cartão de crédito.
+    cartao_validade: campo que armazena a data de validade do cartão de crédito.
+    cartao_codigo: campo que armazena o código de segurança do cartão de crédito.
+    endereco_tipo: campo que armazena o tipo de logradouro (rua, avenida, etc.).
+    endereco_logradouro: campo que armazena o nome do logradouro do endereço.
+    endereco_numero: campo que armazena o número do endereço.
+    endereco_bairro: campo que armazena o nome do bairro do endereço.
+    endereco_cidade: campo que armazena o nome da cidade do endereço.
+    endereco_estado: campo que armazena o nome do estado do endereço.
+    endereco_cep: campo que armazena o CEP (Código de Endereçamento Postal) do endereço.
+    endereco_complemento: campo que armazena informações adicionais sobre o endereço.
+    
+    ITEM: Tabela que armazena as informações relativas aos itens presentes em um pedido.
+    id: campo que armazena o ID único do item.
+    valor: campo que armazena o valor unitário do item.
+    quantidade: campo que armazena a quantidade do item.
+    
+    PRODUTO: Tabela que armazena as informações relativas aos produtos cadastrados no sistema.
+    id: campo que armazena o ID único do produto.
+    nome: campo que armazena o nome do produto.
+    valor: campo que armazena o valor unitário do produto.
+    quantidade_minima: campo que armazena a quantidade mínima em estoque para a manutenção da disponibilidade do produto.
+    
+    MARCA: Tabela que armazena as informações relativas às marcas dos produtos.
+    id: campo que armazena o ID único da marca.
+    nome: campo que armazena o nome da marca.
+    
+    CATEGORIA: Tabela que armazena as informações relativas às categorias dos produtos.
+    id: campo que armazena o ID único da categoria.
+    nome: campo que armazena o nome da categoria.
+    
+    ESTOQUE: Tabela que armazena as informações relativas ao estoque dos produtos.
+    id: campo que armazena o ID único do item do estoque.
+    data_entrada: campo que armazena a data de entrada do produto no estoque.
+    data_vencimento: campo que armazena a data de vencimento do produto.
+    valor: campo que armazena o valor de compra do produto.
+    disponivel: campo que indica se o produto está disponível (verdadeiro ou falso).
+    devolvido: campo que indica se o produto foi devolvido (verdadeiro ou falso).
+    devolvido_motivo: campo que armazena o motivo da devolução do produto, caso tenha sido devolvido.
+    
+    FORNECEDOR: Tabela que armazena as informações relativas aos fornecedores dos produtos.
+    id: campo que armazena o ID único do fornecedor.
+    cnpj: campo que armazena o número do Cadastro Nacional da Pessoa Jurídica (CNPJ) do fornecedor.
+    nome: campo que armazena o nome do fornecedor.
+    email: campo que armazena o endereço de email do fornecedor.
+    telefone: campo que armazena o número de telefone do fornecedor.
+    frequencia_dias: campo que armazena a frequência de fornecimento em dias.
+    
+    USUARIO: Tabela que armazena as informações relativas aos usuários do sistema.
+    id: campo que armazena o ID único do usuário.
+    usuario: campo que armazena o nome de usuário do usuário.
+    senha: campo que armazena a senha do usuário.
+    comprador: campo que indica se o usuário possui o papel de comprador (verdadeiro ou falso).
+    operador: campo que indica se o usuário possui o papel de operador (verdadeiro ou falso).
+    gerente: campo que indica se o usuário possui o papel de gerente (verdadeiro ou falso).
 
+<br><br>
+### 6	MODELO LÓGICO
+![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/images/logico%20v1803.png "Modelo Lógico")
 
-### 6	MODELO LÓGICO<br>
-        a) inclusão do esquema lógico do banco de dados
-        b) verificação de correspondencia com o modelo conceitual 
-        (não serão aceitos modelos que não estejam em conformidade)
-
-### 7	MODELO FÍSICO<br>
+<br><br>
+### 7	MODELO FÍSICO
         a) inclusão das instruções de criacão das estruturas em SQL/DDL 
         (criação de tabelas, alterações, etc..) 
         
@@ -154,9 +204,7 @@ Sugestão: https://balsamiq.com/products/mockups/<br>
 #### a) Modelo (pecha kucha)<br>
 #### b) Tempo de apresentação 6:40 
 
-># Marco de Entrega 03: Itens 10 e 11<br>
-<br>
-<br>
+># Marco de Entrega 03: Itens 10 e 11   <br><br>      <br><br>   
 
 
 
@@ -190,9 +238,7 @@ https://help.github.com/articles/basic-writing-and-formatting-syntax/
 
 
 Link para BrModelo:<br>
-http://www.sis4.com/brModelo/download.html
-<br>
-
+http://www.sis4.com/brModelo/download.html   <br><br>   
 
 Link para curso de GIT<br>
 ![https://www.youtube.com/curso_git](https://www.youtube.com/playlist?list=PLo7sFyCeiGUdIyEmHdfbuD2eR4XPDqnN2?raw=true "Title")
