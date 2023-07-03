@@ -508,23 +508,40 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 #### 9.6	CONSULTAS COM INNER JOIN E ORDER BY (Mínimo ~6~(3))<br>
     a) Uma junção que envolva todas as tabelas possuindo no mínimo 2 registros no resultado
 ##### Lista de todas as compras/itens
-	select cliente.nome, compra.id as pedido, to_char(compra.data_compra,'DD/MM/YYYY') as data
-		, item.quantidade as qtd, categoria.nome as categoria, marca.nome as marca, produto.nome as produto, 
-		to_char(item.valor,'FM999999999.00') as valor_item, to_char(item.quantidade*item.valor,'FM999999999.00') as total_item,
-		to_char((select sum(valor) from item as sub_item where sub_item.id_compra = compra.id),'FM999999999.00') as total_compra
-	from cliente
-		inner join compra on compra.id_cliente = cliente.id 
+	select cpf, cliente.nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra, categoria_mae.nome as categoria,
+		categoria.nome as subcategoria, item.quantidade as qtd, marca.nome as marca, produto.nome as produto,
+		to_char(item.valor,'FM999999999.00') as valor, to_char(item.valor*item.quantidade,'FM999999999.00') as total_item
+	from compra 
+		inner join cliente on compra.id_cliente = cliente.id
 		inner join item on item.id_compra = compra.id 
-		inner join produto on item.id_produto = produto.id
-		inner join marca on produto.id_marca = marca.id 
-		inner join categoria on produto.id_categoria = categoria.id 
+		inner join produto on item.id_produto = produto.id 
+		inner join marca on produto.id_marca = marca.id
+		inner join categoria on produto.id_categoria = categoria.id
 		inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
 	order by compra.id
- ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/2c9be03a-fc66-46c6-ac78-2b25054bb6fa)
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/99e5a6df-4f52-45b9-ae67-d67100200249)
+
 
     b) Outras 2 junções que o grupo considere como sendo as de principal importância para o trabalho
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+##### Lista com o resumo de todas as compras
+	select cpf, nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra,
+		sum(quantidade) as qtd_itens, to_char(sum(valor),'FM999999999.00') as valor_compra
+	from compra 
+		inner join cliente on compra.id_cliente = cliente.id
+		inner join item on item.id_compra = compra.id
+	group by cpf, nome, compra.id
+	order by compra.id
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/8a3488bc-a21b-47b8-820d-083ce3b13865)
+
+##### Lista com informações dos produtos por categoria e quantidade em estoque
+	select categoria_mae.nome as categoria, categoria.nome as subcategoria, marca.nome as marca, produto.nome as produto, to_char(valor,'FM999999999.00') as valor, 
+		quantidade-(select sum(quantidade) from item where item.id_produto = produto.id) as qtd_estoque
+	from categoria 
+		inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
+		inner join produto on produto.id_categoria = categoria.id 
+		inner join marca on produto.id_marca = marca.id
+	order by categoria_mae.nome, categoria.nome, marca.nome, produto.nome
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/49142ed2-7a39-4b6f-955d-cb2dc01eeac8)
 
 <br><br>
 #### 9.7	CONSULTAS COM GROUP BY E FUNÇÕES DE AGRUPAMENTO (Mínimo ~6~(3))<br>
@@ -555,12 +572,62 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 
 <br><br>
 #### 9.8	CONSULTAS COM LEFT, RIGHT E FULL JOIN (Mínimo ~4~(2))<br>
-    a) Criar minimo 1 de cada tipo
+	a) Criar minimo 1 de cada tipo
+##### Relação de clientes e compras
+	select nome, compra.id, data_compra
+	from cliente left join compra on compra.id_cliente = cliente.id
+	order by nome, compra.id
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/b4236fa7-78e6-445a-a212-7abf622b6edc)
+
+##### Todos os registros de categorias com a existência ou não de categoria mãe
+	select categoria.nome as categoria, subcategoria.nome as subcategoria
+	from categoria right join categoria as subcategoria on categoria.id = subcategoria.id_categoria
+	order by categoria.nome desc
+ ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/feb50356-ab72-4e88-a5c9-02b3bd49c788)
 
 <br><br>
 #### 9.9	CONSULTAS COM SELF JOIN E VIEW (Mínimo ~6~(3))<br>
         a) Uma junção que envolva Self Join (caso não ocorra na base justificar e substituir por uma view)
+##### Categorias e subcategorias
+	select categoria.nome as categoria, subcategoria.nome as subcategoria
+	from categoria inner join categoria as subcategoria on categoria.id = subcategoria.id_categoria
+	order by categoria.nome
+ ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/4c38d597-0ec5-4c0c-9e8d-fe851d5dccf1)
+
+  
         b) Uma junções com views que o grupo considere como sendo de relevante importância para o trabalho
+##### View que trás os detalhes das compras realizadas
+	create view compra_detalhe as (
+			select cpf, cliente.nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra, categoria_mae.nome as categoria,
+				categoria.nome as subcategoria, item.quantidade as qtd, marca.nome as marca, produto.nome as produto,
+				to_char(item.valor,'FM999999999.00') as valor, to_char(item.valor*item.quantidade,'FM999999999.00') as total_item
+			from compra 
+				inner join cliente on compra.id_cliente = cliente.id
+				inner join item on item.id_compra = compra.id 
+				inner join produto on item.id_produto = produto.id 
+				inner join marca on produto.id_marca = marca.id
+				inner join categoria on produto.id_categoria = categoria.id
+				inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
+			order by compra.id
+		);
+  
+	select * from compra_detalhe where nome_cliente like '%Maria%'
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/9ec90102-2d6b-4958-be4a-db966c9cfc4d)
+
+
+ ##### View que trás um resumo das compras realizadas
+	create view compra_resumo as (
+			select cpf, nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra,
+				sum(quantidade) as qtd_itens, to_char(sum(valor),'FM999999999.00') as valor_compra
+			from compra 
+				inner join cliente on compra.id_cliente = cliente.id
+				inner join item on item.id_compra = compra.id
+			group by cpf, nome, compra.id
+			order by compra.id
+		);
+	
+	select * from compra_resumo where nome_cliente like '%Maria%'
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/66c38ad2-a904-4eb9-9684-9c29bb169fe0)
 
 <br><br>
 #### 9.10	SUBCONSULTAS (Mínimo ~4~(2))<br>
