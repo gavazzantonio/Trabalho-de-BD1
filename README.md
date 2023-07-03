@@ -668,14 +668,14 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 
 ># Marco de Entrega 02: Do item 9.2 até o ítem 9.10<br>
 
+<br><br>
 ### 10 RELATÓRIOS E GRÁFICOS
 
 #### a) análises e resultados provenientes do banco de dados desenvolvido (usar modelo disponível)
 #### b) link com exemplo de relatórios será disponiblizado pelo professor no AVA
 #### OBS: Esta é uma atividade de grande relevância no contexto do trabalho. Mantenha o foco nos 5 principais relatórios/resultados visando obter o melhor resultado possível.
-
-    
-
+   
+<br><br>
 ### 11	AJUSTES DA DOCUMENTAÇÃO, CRIAÇÃO DOS SLIDES E VÍDEO PARA APRESENTAÇAO FINAL <br>
 
 #### a) Modelo (pecha kucha)<br>
@@ -683,9 +683,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 
 ># Marco de Entrega 03: Itens 10 e 11   <br><br>      <br><br>   
 
-
-
-
+<br><br>
 ### 12 FORMATACAO NO GIT:<br> 
 https://help.github.com/articles/basic-writing-and-formatting-syntax/
 <comentario no git>
@@ -703,7 +701,7 @@ https://help.github.com/articles/basic-writing-and-formatting-syntax/
 #### Mastering Markdown
     https://guides.github.com/features/mastering-markdown/
 
-    
+<br><br>    
 ### OBSERVAÇÕES IMPORTANTES
 
 #### Todos os arquivos que fazem parte do projeto (Imagens, pdfs, arquivos fonte, etc..), devem estar presentes no GIT. Os arquivos do projeto vigente não devem ser armazenados em quaisquer outras plataformas.
