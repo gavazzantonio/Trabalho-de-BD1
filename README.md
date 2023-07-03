@@ -185,176 +185,192 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 
 <br><br>
 ### 7	MODELO FÍSICO
-    create table CLIENTE(
-        id integer primary key,
-        cpf varchar(14),
-        nome varchar(100),
-        email varchar(100),
-        telefone varchar(15),
-        nascimento date,
-        endereco_cep varchar(9),
-        endereco_logradouro varchar(100),
-        endereco_numero integer,
-        endereco_bairro varchar(100),
-        endereco_cidade varchar(100),
-        endereco_estado varchar(2)
-    );
-    
-    create table COMPRA(
-        id integer primary key,
-        data_compra date,
-        id_CLIENTE integer,
-        foreign key (id_CLIENTE) references CLIENTE(id)
-          on update cascade
-    );
-    
-    create table MARCA(
-        id integer primary key,
-        nome varchar(100)
-    );
-    
-    create table CATEGORIA(
-        id integer primary key,
-        nome varchar(100),
-        id_CATEGORIA integer,
-        foreign key(id_CATEGORIA) references CATEGORIA(id)
-          match full on delete set null on update cascade
-    );
-    
-    create table PRODUTO(
-        id integer primary key,
-        nome varchar(100),
-        valor real,
-        quantidade integer,
-        id_MARCA integer,
-        id_CATEGORIA integer,
-        foreign key(id_MARCA) references MARCA(id)
-          on update cascade,
-        foreign key(id_CATEGORIA) references CATEGORIA(id)
-          match full on delete set null on update cascade
-    );
-    
-    create table ITEM(
-        id_PRODUTO integer,
-        id_COMPRA integer,
-        valor real,
-        quantidade integer,
-        primary key(id_PRODUTO, id_COMPRA),
-        foreign key(id_PRODUTO) references PRODUTO(id)
-          on update cascade,
-        foreign key(id_COMPRA) references COMPRA(id)
-          on update cascade
-    );
+```sql
+create table CLIENTE(
+	id integer primary key,
+	cpf varchar(14),
+	nome varchar(100),
+	email varchar(100),
+	telefone varchar(15),
+	nascimento date,
+	endereco_cep varchar(9),
+	endereco_logradouro varchar(100),
+	endereco_numero integer,
+	endereco_bairro varchar(100),
+	endereco_cidade varchar(100),
+	endereco_estado varchar(2)
+);
+
+create table COMPRA(
+	id integer primary key,
+	data_compra date,
+	id_CLIENTE integer,
+	foreign key (id_CLIENTE) references CLIENTE(id)
+	  on update cascade
+);
+
+create table MARCA(
+	id integer primary key,
+	nome varchar(100)
+);
+
+create table CATEGORIA(
+	id integer primary key,
+	nome varchar(100),
+	id_CATEGORIA integer,
+	foreign key(id_CATEGORIA) references CATEGORIA(id)
+	  match full on delete set null on update cascade
+);
+
+create table PRODUTO(
+	id integer primary key,
+	nome varchar(100),
+	valor real,
+	quantidade integer,
+	id_MARCA integer,
+	id_CATEGORIA integer,
+	foreign key(id_MARCA) references MARCA(id)
+	  on update cascade,
+	foreign key(id_CATEGORIA) references CATEGORIA(id)
+	  match full on delete set null on update cascade
+);
+
+create table ITEM(
+	id_PRODUTO integer,
+	id_COMPRA integer,
+	valor real,
+	quantidade integer,
+	primary key(id_PRODUTO, id_COMPRA),
+	foreign key(id_PRODUTO) references PRODUTO(id)
+	  on update cascade,
+	foreign key(id_COMPRA) references COMPRA(id)
+	  on update cascade
+);
+```
 
 <br><br>
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
-    insert into CLIENTE (id, cpf, nome, email, telefone, nascimento, endereco_cep, endereco_logradouro, endereco_numero, endereco_bairro, endereco_cidade, endereco_estado)
-    values
-        (1, '123.456.789-00', 'João Silva', 'joao@gmail.com', '(11) 98765-4321', '1990-05-15', '12345-678', 'Rua A', 10, 'Centro', 'São Paulo', 'SP'),
-        (2, '987.654.321-00', 'Maria Santos', 'maria@gmail.com', '(11) 98765-4322', '1985-09-20', '54321-098', 'Rua B', 20, 'Vila Nova', 'Rio de Janeiro', 'RJ'),
-        (3, '111.222.333-00', 'Pedro Oliveira', 'pedro@gmail.com', '(11) 98765-4323', '1992-12-10', '67890-543', 'Rua C', 30, 'Jardins', 'São Paulo', 'SP'),
-        (4, '444.555.666-00', 'Ana Costa', 'ana@gmail.com', '(11) 98765-4324', '1998-02-28', '34567-890', 'Rua D', 40, 'Copacabana', 'Rio de Janeiro', 'RJ'),
-        (5, '777.888.999-00', 'Carlos Pereira', 'carlos@gmail.com', '(11) 98765-4325', '1995-07-05', '98765-432', 'Rua E', 50, 'Barra Funda', 'São Paulo', 'SP'),
-        (6, '000.111.222-33', 'Fernanda Sousa', 'fernanda@gmail.com', '(11) 98765-4326', '1993-11-12', '67890-123', 'Rua F', 60, 'Lapa', 'Rio de Janeiro', 'RJ'),
-        (7, '444.333.222-11', 'Mariana Rocha', 'mariana@gmail.com', '(11) 98765-4327', '1991-04-02', '54321-678', 'Rua G', 70, 'Moema', 'São Paulo', 'SP'),
-        (8, '555.666.777-00', 'Ricardo Almeida', 'ricardo@gmail.com', '(11) 98765-4328', '1997-08-18', '23456-789', 'Rua H', 80, 'Botafogo', 'Rio de Janeiro', 'RJ'),
-        (9, '888.999.000-11', 'Camila Santos', 'camila@gmail.com', '(11) 98765-4329', '1994-01-25', '98765-321', 'Rua I', 90, 'Pinheiros', 'São Paulo', 'SP'),
-        (10, '222.333.444-00', 'Lucas Lima', 'lucas@gmail.com', '(11) 98765-4330', '1996-06-08', '43210-987', 'Rua J', 100, 'Ipanema', 'Rio de Janeiro', 'RJ');
-    
-    insert into COMPRA (id, data_compra, id_CLIENTE)
-    values
-        (1, '2023-06-01', 1),
-        (2, '2023-06-02', 2),
-        (3, '2023-06-10', 3),
-        (4, '2023-06-10', 4),
-        (5, '2023-06-11', 5),
-        (6, '2023-06-15', 3),
-        (7, '2023-06-17', 1),
-        (8, '2023-06-17', 8),
-        (9, '2023-06-20', 2),
-        (10, '2023-06-30', 10);
-        
-    insert into MARCA (id, nome)
-    values
-        (1, 'Nike'),
-        (2, 'Adidas'),
-        (3, 'Dell'),
-        (4, 'Apple'),
-        (5, 'Under Armour'),
-        (6, 'Hering'),
-        (7, 'Reebok'),
-        (8, 'Samsung'),
-        (9, 'LG'),
-        (10, 'Havaianas');
-    
-    insert into CATEGORIA (id, nome, id_CATEGORIA)
-    values
-        (1, 'Eletrônicos', NULL),
-        (2, 'Smartphones', 1),
-        (3, 'TVs', 1),
-        (4, 'Computadores', 1),
-        (5, 'Roupas', NULL),
-        (6, 'Masculino', 5),
-        (7, 'Feminino', 5),
-        (8, 'Calçados', 5),
-        (9, 'Esportes', NULL),
-        (10, 'Futebol', 9);
-       
-    insert into PRODUTO (id, nome, valor, quantidade, id_MARCA, id_CATEGORIA)
-    values
-        (1, 'iPhone 12', 3499, 10, 4, 2),
-        (2, 'Galaxy S21', 2199.99, 15, 8, 2),
-        (3, 'OLED TV', 3099.99, 5, 9, 3),
-        (4, 'XPS 15', 4000, 8, 3, 4),
-        (5, 'Air Max', 400, 20, 1, 8),
-        (6, 'Superstar', 375, 15, 2, 8),
-        (7, 'Brasil Light', 30, 12, 10, 8),
-        (8, 'Classic', 379.99, 18, 7, 8),
-        (9, 'HeatGear', 220, 25, 5, 6),
-        (10, 'World', 60, 10, 6, 6);
-    
-    insert into ITEM (id_PRODUTO, id_COMPRA, valor, quantidade)
-    values
-        (1, 1, 3499, 2),
-        (2, 2, 2199.99, 1),
-        (3, 2, 3099.99, 1),
-        (4, 3, 4000, 1),
-        (5, 4, 400, 3),
-        (6, 5, 375, 2),
-        (7, 6, 30, 1),
-        (8, 6, 379.99, 1),
-        (9, 7, 220, 2),
-        (10, 8, 60, 1),
-       	(10, 9, 60, 1),
-        (7, 9, 30, 1),
-       	(2, 10, 2599.99, 2);
+```sql
+insert into CLIENTE (id, cpf, nome, email, telefone, nascimento, endereco_cep, endereco_logradouro, endereco_numero, endereco_bairro, endereco_cidade, endereco_estado)
+values
+(1, '123.456.789-00', 'João Silva', 'joao@gmail.com', '(11) 98765-4321', '1990-05-15', '12345-678', 'Rua A', 10, 'Centro', 'São Paulo', 'SP'),
+(2, '987.654.321-00', 'Maria Santos', 'maria@gmail.com', '(11) 98765-4322', '1985-09-20', '54321-098', 'Rua B', 20, 'Vila Nova', 'Rio de Janeiro', 'RJ'),
+(3, '111.222.333-00', 'Pedro Oliveira', 'pedro@gmail.com', '(11) 98765-4323', '1992-12-10', '67890-543', 'Rua C', 30, 'Jardins', 'São Paulo', 'SP'),
+(4, '444.555.666-00', 'Ana Costa', 'ana@gmail.com', '(11) 98765-4324', '1998-02-28', '34567-890', 'Rua D', 40, 'Copacabana', 'Rio de Janeiro', 'RJ'),
+(5, '777.888.999-00', 'Carlos Pereira', 'carlos@gmail.com', '(11) 98765-4325', '1995-07-05', '98765-432', 'Rua E', 50, 'Barra Funda', 'São Paulo', 'SP'),
+(6, '000.111.222-33', 'Fernanda Sousa', 'fernanda@gmail.com', '(11) 98765-4326', '1993-11-12', '67890-123', 'Rua F', 60, 'Lapa', 'Rio de Janeiro', 'RJ'),
+(7, '444.333.222-11', 'Mariana Rocha', 'mariana@gmail.com', '(11) 98765-4327', '1991-04-02', '54321-678', 'Rua G', 70, 'Moema', 'São Paulo', 'SP'),
+(8, '555.666.777-00', 'Ricardo Almeida', 'ricardo@gmail.com', '(11) 98765-4328', '1997-08-18', '23456-789', 'Rua H', 80, 'Botafogo', 'Rio de Janeiro', 'RJ'),
+(9, '888.999.000-11', 'Camila Santos', 'camila@gmail.com', '(11) 98765-4329', '1994-01-25', '98765-321', 'Rua I', 90, 'Pinheiros', 'São Paulo', 'SP'),
+(10, '222.333.444-00', 'Lucas Lima', 'lucas@gmail.com', '(11) 98765-4330', '1996-06-08', '43210-987', 'Rua J', 100, 'Ipanema', 'Rio de Janeiro', 'RJ');
+
+insert into COMPRA (id, data_compra, id_CLIENTE)
+values
+(1, '2023-06-01', 1),
+(2, '2023-06-02', 2),
+(3, '2023-06-10', 3),
+(4, '2023-06-10', 4),
+(5, '2023-06-11', 5),
+(6, '2023-06-15', 3),
+(7, '2023-06-17', 1),
+(8, '2023-06-17', 8),
+(9, '2023-06-20', 2),
+(10, '2023-06-30', 10);
+
+insert into MARCA (id, nome)
+values
+(1, 'Nike'),
+(2, 'Adidas'),
+(3, 'Dell'),
+(4, 'Apple'),
+(5, 'Under Armour'),
+(6, 'Hering'),
+(7, 'Reebok'),
+(8, 'Samsung'),
+(9, 'LG'),
+(10, 'Havaianas');
+
+insert into CATEGORIA (id, nome, id_CATEGORIA)
+values
+(1, 'Eletrônicos', NULL),
+(2, 'Smartphones', 1),
+(3, 'TVs', 1),
+(4, 'Computadores', 1),
+(5, 'Roupas', NULL),
+(6, 'Masculino', 5),
+(7, 'Feminino', 5),
+(8, 'Calçados', 5),
+(9, 'Esportes', NULL),
+(10, 'Futebol', 9);
+
+insert into PRODUTO (id, nome, valor, quantidade, id_MARCA, id_CATEGORIA)
+values
+(1, 'iPhone 12', 3499, 10, 4, 2),
+(2, 'Galaxy S21', 2199.99, 15, 8, 2),
+(3, 'OLED TV', 3099.99, 5, 9, 3),
+(4, 'XPS 15', 4000, 8, 3, 4),
+(5, 'Air Max', 400, 20, 1, 8),
+(6, 'Superstar', 375, 15, 2, 8),
+(7, 'Brasil Light', 30, 12, 10, 8),
+(8, 'Classic', 379.99, 18, 7, 8),
+(9, 'HeatGear', 220, 25, 5, 6),
+(10, 'World', 60, 10, 6, 6);
+
+insert into ITEM (id_PRODUTO, id_COMPRA, valor, quantidade)
+values
+(1, 1, 3499, 2),
+(2, 2, 2199.99, 1),
+(3, 2, 3099.99, 1),
+(4, 3, 4000, 1),
+(5, 4, 400, 3),
+(6, 5, 375, 2),
+(7, 6, 30, 1),
+(8, 6, 379.99, 1),
+(9, 7, 220, 2),
+(10, 8, 60, 1),
+(10, 9, 60, 1),
+(7, 9, 30, 1),
+(2, 10, 2599.99, 2);
+```
 
 
 <br><br>
 ### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
 #### 9.1	CONSULTAS DAS TABELAS COM TODOS OS DADOS INSERIDOS (Todas) <br>
-    Tabela CLIENTE
-    select * from CLIENTE order by id
+Tabela CLIENTE
+```sql
+select * from CLIENTE order by id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/d18ffd64-105e-47df-a49d-b554c5ac3ed4)
 
-    Tabela COMPRA
-    select * from COMPRA order by id
+Tabela COMPRA
+```sql
+select * from COMPRA order by id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/e6c02d56-aeed-4c0c-9da0-35691fba835c)
 
-    Tabela ITEM
-    select * from ITEM order by id_compra
+Tabela ITEM
+```sql
+select * from ITEM order by id_compra
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/55b78fff-bf85-4904-af07-df9df4be2e1e)
 
-    Tabela PRODUTO
-    select * from PRODUTO order by id
+Tabela PRODUTO
+```sql
+select * from PRODUTO order by id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/1fcb91bf-d4cd-43db-a3b0-dc2f09e6f3c7)
 
-    Tabela MARCA
-    select * from MARCA order by id
+Tabela MARCA
+```sql
+select * from MARCA order by id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/7c814503-440a-4a2a-8eae-cddff7a99b23)
 
-    Tabela CATEGORIA
-    select * from CATEGORIA order by id
+Tabela CATEGORIA
+```sql
+select * from CATEGORIA order by id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/012acaac-abad-423c-b34c-2e25fb0ae11a)
 
 ># Marco de Entrega 01: Do item 1 até o item 9.1<br>
@@ -362,296 +378,357 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 <br><br>
 #### 9.2	CONSULTAS DAS TABELAS COM FILTROS WHERE (Mínimo ~4~(2))<br>
 ##### Leads de clientes do estado de São Paulo
-    select nome, email, telefone
-    from cliente
-    where endereco_estado = 'SP'
+```sql
+select nome, email, telefone
+from cliente
+where endereco_estado = 'SP'
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/ea232530-4d6f-424f-94e0-eeaba74d09bc)
 
 ##### Lista das categorias principais
-    select nome
-    from categoria
-    where id_categoria is null
+```sql
+select nome
+from categoria
+where id_categoria is null
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/cfc14166-dd3a-473e-ad14-e31d43e879cd)
 
 <br><br>
 #### 9.3	CONSULTAS QUE USAM OPERADORES LÓGICOS, ARITMÉTICOS E TABELAS OU CAMPOS RENOMEADOS (Mínimo ~11~(6))
     a) Criar 3 consultas que envolvam os operadores lógicos AND, OR e Not
 ##### Leads de clientes que moram na cidade de Rio de Janeiro, no estado de RJ
-    select nome, email, telefone
-    from cliente
-    where endereco_estado= 'RJ' and endereco_cidade = 'Rio de Janeiro'
+```sql
+select nome, email, telefone
+from cliente
+where endereco_estado= 'RJ' and endereco_cidade = 'Rio de Janeiro'
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/cf24e8a3-bc6f-4b6a-9ee6-55a535edc219)
 
 ##### Produtos que custam menos de R$100 ou mais de R$1000
-    select nome, to_char(valor, 'FM999999999.00') as valor
-    from produto
-    where valor < 100 or valor > 1000 
+```sql
+select nome, to_char(valor, 'FM999999999.00') as valor
+from produto
+where valor < 100 or valor > 1000 
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/5722e9d0-7b47-442b-b805-5d6b6352eee0)
 
 ##### Lista de subcategorias
-    select nome
-    from categoria
-    where id_categoria is not null
+```sql
+select nome
+from categoria
+where id_categoria is not null
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/d0c06cc1-fbe0-4006-9d61-de5b95cb5602)
 
     b) Criar no mínimo 1 consultas com operadores aritméticos 
 ##### Itens vendido, com valor unitário, quantidade e total por item
-    select id_compra, id_produto, quantidade as qtd, 
-	    to_char(valor,'FM999999999.00') as valor, 
-	    to_char(quantidade*valor,'FM999999999.00') as total
-    from item
+```sql
+select id_compra, id_produto, quantidade as qtd, 
+    to_char(valor,'FM999999999.00') as valor, 
+    to_char(quantidade*valor,'FM999999999.00') as total
+from item
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/4e193fd2-3372-4631-8dd4-0776c339cf1c)
 
     c) Criar no mínimo 2 consultas com operação de renomear nomes de campos ou tabelas
 ##### Informações de endereço do cliente reunido em um único campo
-    select nome, endereco_logradouro||', '||endereco_numero||', '||endereco_bairro||', '||endereco_cidade||'/'||endereco_estado||', '||endereco_cep as endereco_completo
-    from cliente
+```sql
+select nome, endereco_logradouro||', '||endereco_numero||', '||endereco_bairro||', '||endereco_cidade||'/'||endereco_estado||', '||endereco_cep as endereco_completo
+from cliente
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/f10fde7c-9264-420a-b400-3e08b1bde1b1)
 
 ##### Relação de categorias
-    select categoria_mae.nome as categoria_principal, categoria.nome as categoria
-    from categoria 
-	    inner join categoria as categoria_mae 
-		    on categoria.id_categoria = categoria_mae.id 
+```sql
+select categoria_mae.nome as categoria_principal, categoria.nome as categoria
+from categoria inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id 
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/b93b5533-344c-4ff4-b8a0-a61c3453199b)
 
 <br><br>
 #### 9.4	CONSULTAS QUE USAM OPERADORES LIKE E DATAS (Mínimo ~12~(6)) <br>
     a) Criar outras 2 consultas que envolvam like ou ilike
 ##### Leads dos clientes que possuem o nome/sobrenome Santos
-    select nome, email, telefone
-    from cliente
-    where nome like '%Santos%'
+```sql
+select nome, email, telefone
+from cliente
+where nome like '%Santos%'
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/621447fe-843d-4625-af64-61179a0aeee9)
 
 ##### Valor dos produtos que tenham que podem ter sido nomeadods como iphone/iPhone
-    select nome, to_char(valor,'FM999999999.00') as valor
+```sql
+select nome, to_char(valor,'FM999999999.00') as valor
     from produto
     where nome ilike '%iphone%'
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/892f0dc4-a793-4b70-b87a-d9a1dc018346)
 
     b) Criar 4 consultas com funções data apresentada.
 #### Lista de clientes que realizaram compras na 2ª quinzena de julho/2023
-	select compra.id, nome, to_char(data_compra,'DD/MM/YYYY') as data
-	from compra inner join cliente on id_cliente = cliente.id
-	where data_compra >= '2023-06-15'
+```sql
+select compra.id, nome, to_char(data_compra,'DD/MM/YYYY') as data
+from compra inner join cliente on id_cliente = cliente.id
+where data_compra >= '2023-06-15'
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/4600d713-fb1a-4c3e-8a42-51d82b9dd87e)
  
 #### Leads de clientes ordenado pela idade
-	select nome, date_part('year',age(current_date, nascimento)) as idade, email, telefone
-	from CLIENTE
-	order by nascimento desc
+```sql
+select nome, date_part('year',age(current_date, nascimento)) as idade, email, telefone
+from CLIENTE
+order by nascimento desc
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/719be6bd-86aa-4f86-afec-02cd9816c4e8)
 
 #### Lista de compras realizadas com indicação do cliente, compra anterior e dias entre compras do mesmo cliente
-	select nome, data_compra, 
-		(
-			select sub_compra.data_compra
-			from compra as sub_compra
-			where sub_compra.id_cliente = compra.id_cliente and sub_compra.data_compra < compra.data_compra
-			limit 1
-		) as ultima_compra,
-		date_part('day',age(data_compra,
-		(
-			select sub_compra.data_compra
-			from compra as sub_compra
-			where sub_compra.id_cliente = compra.id_cliente and sub_compra.data_compra < compra.data_compra
-			limit 1
-		))) as dias_entre_compras
-	from compra inner join cliente on id_cliente = cliente.id
-	order by data_compra
+```sql
+select nome, data_compra, 
+	(
+		select sub_compra.data_compra
+		from compra as sub_compra
+		where sub_compra.id_cliente = compra.id_cliente and sub_compra.data_compra < compra.data_compra
+		limit 1
+	) as ultima_compra,
+	date_part('day',age(data_compra,
+	(
+		select sub_compra.data_compra
+		from compra as sub_compra
+		where sub_compra.id_cliente = compra.id_cliente and sub_compra.data_compra < compra.data_compra
+		limit 1
+	))) as dias_entre_compras
+from compra inner join cliente on id_cliente = cliente.id
+order by data_compra
+```
  ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/c4212346-0d90-482f-be9d-0a1eff87bbc2)
 
 ##### Quantidade de clientes aniversariantes por mês (atualização 9.5.b.3 realizada anterior a esta consulta)
-	select extract(month from nascimento) as mês, count(*) as qtd
-	from cliente
-	group by extract(month from nascimento)
+```sql
+select extract(month from nascimento) as mês, count(*) as qtd
+from cliente
+group by extract(month from nascimento)
+```
  ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/92e3703e-53b9-44c9-afe3-fe0608e76bc3)
 
 <br><br>
 #### 9.5	INSTRUÇÕES APLICANDO ATUALIZAÇÃO E EXCLUSÃO DE DADOS (Mínimo ~6~(3))<br>
     a) Criar minimo 2 de exclusão
 ##### Exclusão dos dados de um cliente cujo id = 9 (consulta na tabela CLIENTE após atualização)
-	delete from cliente where id = 9;
-	select * from CLIENTE order by id
+```sql
+delete from cliente where id = 9;
+select * from CLIENTE order by id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/d1ce804d-fa30-41b3-baa7-549472d442ff)
 
 ##### Exclusão da subcategoria 'Futebol' (consulta na tabela CATEGORIA após atualização)
-	delete from CATEGORIA where nome = 'Futebol';
-	select * from CATEGORIA order by id
+```sql
+delete from CATEGORIA where nome = 'Futebol';
+select * from CATEGORIA order by id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/b713539c-b86e-450f-abf0-a6b579f1e10d)
 
     b) Criar minimo 2 de atualização
 ##### Atualização de valores de alguns produtos (consulta na tabela PRODUTO após atualização)
-    update produto set valor = 3999 where id = 1;
-    update produto set valor = 2599.99 where id = 2;
-    update produto set valor = 3499.99 where id = 3;
-    update produto set valor = 4700 where id = 4;
-    update produto set valor = 449.99 where id = 5;
-    update produto set valor = 475 where id = 6;
-    select * from PRODUTO order by id
+```sql
+update produto set valor = 3999 where id = 1;
+update produto set valor = 2599.99 where id = 2;
+update produto set valor = 3499.99 where id = 3;
+update produto set valor = 4700 where id = 4;
+update produto set valor = 449.99 where id = 5;
+update produto set valor = 475 where id = 6;
+select * from PRODUTO order by id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/21da729e-f1d9-42b0-997e-54c0d29c7f01)
 
 ##### Atualização da categoria principal 'Esportes' para uma subcategoria da categoria 'Roupas'
-	update CATEGORIA set id_categoria = 5 where id = 9;
-	select * from CATEGORIA order by id
+```sql
+update CATEGORIA set id_categoria = 5 where id = 9;
+select * from CATEGORIA order by id
+```
  ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/994d1174-7bfd-4b04-8030-51fe773e19bd)
 
  ##### Atualização de data de aniversário de cliente (consulta na tabela CLIENTE após atualização)
- 	update cliente set nascimento = '1995-08-05' where id = 5;
-  	select * from CLIENTE order by id
+```sql
+update cliente set nascimento = '1995-08-05' where id = 5;
+select * from CLIENTE order by id
+```
  ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/368f5a02-e70b-4434-aa5a-9a73533a0511)
 
 <br><br>
 #### 9.6	CONSULTAS COM INNER JOIN E ORDER BY (Mínimo ~6~(3))<br>
     a) Uma junção que envolva todas as tabelas possuindo no mínimo 2 registros no resultado
 ##### Lista de todas as compras/itens
-	select cpf, cliente.nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra, categoria_mae.nome as categoria,
-		categoria.nome as subcategoria, item.quantidade as qtd, marca.nome as marca, produto.nome as produto,
-		to_char(item.valor,'FM999999999.00') as valor, to_char(item.valor*item.quantidade,'FM999999999.00') as total_item
-	from compra 
-		inner join cliente on compra.id_cliente = cliente.id
-		inner join item on item.id_compra = compra.id 
-		inner join produto on item.id_produto = produto.id 
-		inner join marca on produto.id_marca = marca.id
-		inner join categoria on produto.id_categoria = categoria.id
-		inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
-	order by compra.id
+```sql
+select cpf, cliente.nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra, categoria_mae.nome as categoria,
+	categoria.nome as subcategoria, item.quantidade as qtd, marca.nome as marca, produto.nome as produto,
+	to_char(item.valor,'FM999999999.00') as valor, to_char(item.valor*item.quantidade,'FM999999999.00') as total_item
+from compra 
+	inner join cliente on compra.id_cliente = cliente.id
+	inner join item on item.id_compra = compra.id 
+	inner join produto on item.id_produto = produto.id 
+	inner join marca on produto.id_marca = marca.id
+	inner join categoria on produto.id_categoria = categoria.id
+	inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
+order by compra.id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/99e5a6df-4f52-45b9-ae67-d67100200249)
 
 
     b) Outras 2 junções que o grupo considere como sendo as de principal importância para o trabalho
 ##### Lista com o resumo de todas as compras
-	select cpf, nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra,
-		sum(quantidade) as qtd_itens, to_char(sum(valor),'FM999999999.00') as valor_compra
-	from compra 
-		inner join cliente on compra.id_cliente = cliente.id
-		inner join item on item.id_compra = compra.id
-	group by cpf, nome, compra.id
-	order by compra.id
+```sql
+select cpf, nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra,
+	sum(quantidade) as qtd_itens, to_char(sum(valor),'FM999999999.00') as valor_compra
+from compra 
+	inner join cliente on compra.id_cliente = cliente.id
+	inner join item on item.id_compra = compra.id
+group by cpf, nome, compra.id
+order by compra.id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/8a3488bc-a21b-47b8-820d-083ce3b13865)
 
 ##### Lista com informações dos produtos por categoria e quantidade em estoque
-	select categoria_mae.nome as categoria, categoria.nome as subcategoria, marca.nome as marca, produto.nome as produto, to_char(valor,'FM999999999.00') as valor, 
-		quantidade-(select sum(quantidade) from item where item.id_produto = produto.id) as qtd_estoque
-	from categoria 
-		inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
-		inner join produto on produto.id_categoria = categoria.id 
-		inner join marca on produto.id_marca = marca.id
-	order by categoria_mae.nome, categoria.nome, marca.nome, produto.nome
+```sql
+select categoria_mae.nome as categoria, categoria.nome as subcategoria, marca.nome as marca, produto.nome as produto, to_char(valor,'FM999999999.00') as valor, 
+	quantidade-(select sum(quantidade) from item where item.id_produto = produto.id) as qtd_estoque
+from categoria 
+	inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
+	inner join produto on produto.id_categoria = categoria.id 
+	inner join marca on produto.id_marca = marca.id
+order by categoria_mae.nome, categoria.nome, marca.nome, produto.nome
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/49142ed2-7a39-4b6f-955d-cb2dc01eeac8)
 
 <br><br>
 #### 9.7	CONSULTAS COM GROUP BY E FUNÇÕES DE AGRUPAMENTO (Mínimo ~6~(3))<br>
     a) Criar minimo 2 envolvendo algum tipo de junção
 ##### Quantidade de itens comprados e valor total gasto por cliente
-	select nome, sum(quantidade) as itens_comprado, 
-		to_char(sum(valor),'999999999.00') as total_gasto
-	from cliente
-		inner join compra on compra.id_cliente = cliente.id 
-		inner join item on item.id_compra = compra.id 
-	group by nome
+```sql
+select nome, sum(quantidade) as itens_comprado, 
+	to_char(sum(valor),'999999999.00') as total_gasto
+from cliente
+	inner join compra on compra.id_cliente = cliente.id 
+	inner join item on item.id_compra = compra.id 
+group by nome
+```
  ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/b6a00f2c-35c4-48c2-8155-f03b6d1f0fac)
 
 ##### Quantidade de clientes por cidade
-	select endereco_cidade as cidade, endereco_estado as UF, count(*)
-	from cliente
-	group by endereco_cidade, endereco_estado
+```sql
+select endereco_cidade as cidade, endereco_estado as UF, count(*)
+from cliente
+group by endereco_cidade, endereco_estado
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/809e58ce-f7ab-4750-a205-87a0d75f38c3)
 
 ##### Quantidades de produtos por categoria
-	select categoria_mae.nome as categoria, categoria.nome as subcategoria, count(*) as qtd
-	from categoria 
-		inner join produto on produto.id_categoria = categoria.id 
-		inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
-	group by categoria_mae.nome, categoria.nome
-	order by categoria_mae.nome
+```sql
+select categoria_mae.nome as categoria, categoria.nome as subcategoria, count(*) as qtd
+from categoria 
+	inner join produto on produto.id_categoria = categoria.id 
+	inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
+group by categoria_mae.nome, categoria.nome
+order by categoria_mae.nome
+ ```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/c7cc6d3e-a230-4196-9755-106f612eb63f)
 
 <br><br>
 #### 9.8	CONSULTAS COM LEFT, RIGHT E FULL JOIN (Mínimo ~4~(2))<br>
 	a) Criar minimo 1 de cada tipo
 ##### Relação de clientes e compras
-	select nome, compra.id, data_compra
-	from cliente left join compra on compra.id_cliente = cliente.id
-	order by nome, compra.id
+```sql
+select nome, compra.id, data_compra
+from cliente left join compra on compra.id_cliente = cliente.id
+order by nome, compra.id
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/b4236fa7-78e6-445a-a212-7abf622b6edc)
 
 ##### Todos os registros de categorias com a existência ou não de categoria mãe
-	select categoria.nome as categoria, subcategoria.nome as subcategoria
-	from categoria right join categoria as subcategoria on categoria.id = subcategoria.id_categoria
-	order by categoria.nome desc
+```sql
+select categoria.nome as categoria, subcategoria.nome as subcategoria
+from categoria right join categoria as subcategoria on categoria.id = subcategoria.id_categoria
+order by categoria.nome desc
+```
  ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/feb50356-ab72-4e88-a5c9-02b3bd49c788)
 
 <br><br>
 #### 9.9	CONSULTAS COM SELF JOIN E VIEW (Mínimo ~6~(3))<br>
         a) Uma junção que envolva Self Join (caso não ocorra na base justificar e substituir por uma view)
 ##### Categorias e subcategorias
-	select categoria.nome as categoria, subcategoria.nome as subcategoria
-	from categoria inner join categoria as subcategoria on categoria.id = subcategoria.id_categoria
-	order by categoria.nome
+```sql
+select categoria.nome as categoria, subcategoria.nome as subcategoria
+from categoria inner join categoria as subcategoria on categoria.id = subcategoria.id_categoria
+order by categoria.nome
+```
  ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/4c38d597-0ec5-4c0c-9e8d-fe851d5dccf1)
 
   
         b) Uma junções com views que o grupo considere como sendo de relevante importância para o trabalho
 ##### View que trás os detalhes das compras realizadas
-	create view compra_detalhe as (
-			select cpf, cliente.nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra, categoria_mae.nome as categoria,
-				categoria.nome as subcategoria, item.quantidade as qtd, marca.nome as marca, produto.nome as produto,
-				to_char(item.valor,'FM999999999.00') as valor, to_char(item.valor*item.quantidade,'FM999999999.00') as total_item
-			from compra 
-				inner join cliente on compra.id_cliente = cliente.id
-				inner join item on item.id_compra = compra.id 
-				inner join produto on item.id_produto = produto.id 
-				inner join marca on produto.id_marca = marca.id
-				inner join categoria on produto.id_categoria = categoria.id
-				inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
-			order by compra.id
-		);
-  
-	select * from compra_detalhe where nome_cliente like '%Maria%'
+```sql
+create view compra_detalhe as (
+		select cpf, cliente.nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra, categoria_mae.nome as categoria,
+			categoria.nome as subcategoria, item.quantidade as qtd, marca.nome as marca, produto.nome as produto,
+			to_char(item.valor,'FM999999999.00') as valor, to_char(item.valor*item.quantidade,'FM999999999.00') as total_item
+		from compra 
+			inner join cliente on compra.id_cliente = cliente.id
+			inner join item on item.id_compra = compra.id 
+			inner join produto on item.id_produto = produto.id 
+			inner join marca on produto.id_marca = marca.id
+			inner join categoria on produto.id_categoria = categoria.id
+			inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
+		order by compra.id
+	);
+
+select * from compra_detalhe where nome_cliente like '%Maria%'
+ ```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/9ec90102-2d6b-4958-be4a-db966c9cfc4d)
 
 
  ##### View que trás um resumo das compras realizadas
-	create view compra_resumo as (
-			select cpf, nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra,
-				sum(quantidade) as qtd_itens, to_char(sum(valor),'FM999999999.00') as valor_compra
-			from compra 
-				inner join cliente on compra.id_cliente = cliente.id
-				inner join item on item.id_compra = compra.id
-			group by cpf, nome, compra.id
-			order by compra.id
-		);
-	
-	select * from compra_resumo where nome_cliente like '%Maria%'
+```sql
+create view compra_resumo as (
+		select cpf, nome as nome_cliente, compra.id as compra, to_char(compra.data_compra,'DD/MM/YYYY') as data_compra,
+			sum(quantidade) as qtd_itens, to_char(sum(valor),'FM999999999.00') as valor_compra
+		from compra 
+			inner join cliente on compra.id_cliente = cliente.id
+			inner join item on item.id_compra = compra.id
+		group by cpf, nome, compra.id
+		order by compra.id
+	);
+
+select * from compra_resumo where nome_cliente like '%Maria%'
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/66c38ad2-a904-4eb9-9684-9c29bb169fe0)
 
 <br><br>
 #### 9.10	SUBCONSULTAS (Mínimo ~4~(2))<br>
      a) Criar 1 envolvendo GROUP BY
 ##### Lista de produtos vendidos com quantidade vendida, a inflação entre valores praticados em vendas anteriores e o valor atual e a quantidade em estoque
-	select categoria_mae.nome as categoria, categoria.nome as subcategoria, marca.nome as marca, produto.nome as produto,
-		(select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id) as qtd_vendido, 
-		to_char(produto.valor,'FM999999999.00') as valor_atual,
-		round((produto.valor / (select min(valor) from item as sub_item where sub_item.id_produto = produto.id)-1)*100)||'%' as inflação, 
-		produto.quantidade - (select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id) as qtd_estoque
-	from compra 
-		inner join item on item.id_compra = compra.id 
-		inner join produto on item.id_produto = produto.id
-		inner join marca on produto.id_marca = marca.id 
-		inner join categoria on produto.id_categoria = categoria.id 
-		inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
-	group by categoria_mae.nome, categoria.nome, marca.nome, produto.nome, produto.valor,
-		(select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id),
-		round((produto.valor / (select min(valor) from item as sub_item where sub_item.id_produto = produto.id)-1)*100)||'%',
-		produto.quantidade - (select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id)
-	order by categoria_mae.nome, categoria.nome, marca.nome
+```sql
+select categoria_mae.nome as categoria, categoria.nome as subcategoria, marca.nome as marca, produto.nome as produto,
+	(select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id) as qtd_vendido, 
+	to_char(produto.valor,'FM999999999.00') as valor_atual,
+	round((produto.valor / (select min(valor) from item as sub_item where sub_item.id_produto = produto.id)-1)*100)||'%' as inflação, 
+	produto.quantidade - (select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id) as qtd_estoque
+from compra 
+	inner join item on item.id_compra = compra.id 
+	inner join produto on item.id_produto = produto.id
+	inner join marca on produto.id_marca = marca.id 
+	inner join categoria on produto.id_categoria = categoria.id 
+	inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
+group by categoria_mae.nome, categoria.nome, marca.nome, produto.nome, produto.valor,
+	(select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id),
+	round((produto.valor / (select min(valor) from item as sub_item where sub_item.id_produto = produto.id)-1)*100)||'%',
+	produto.quantidade - (select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id)
+order by categoria_mae.nome, categoria.nome, marca.nome
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/cc785a17-da8d-410c-9af3-7293ea339b9d)
 
      b) Criar 1 envolvendo algum tipo de junção
 ##### Lista as categorias e, para cada uma, a quantidade de itens vendidos e o valor de faturamento
-	select categoria.nome as categoria, 
+```sql
+ select categoria.nome as categoria, 
 		(	select sum(sub_item.quantidade) 
 			from item as sub_item inner join produto as sub_produto on sub_item.id_produto = sub_produto.id 
 			where sub_produto.id_categoria = categoria.id
@@ -664,6 +741,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 		) as faturamento
 	from categoria
 	where id_categoria is not null
+```
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/7c32d565-0924-4260-8f29-5c8e3f5e8e8f)
 
 ># Marco de Entrega 02: Do item 9.2 até o ítem 9.10<br>
