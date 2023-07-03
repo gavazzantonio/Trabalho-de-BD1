@@ -748,10 +748,7 @@ order by categoria_mae.nome, categoria.nome, marca.nome
 
 <br><br>
 ### 10 RELATÓRIOS E GRÁFICOS
-
-#### a) análises e resultados provenientes do banco de dados desenvolvido (usar modelo disponível)
-#### b) link com exemplo de relatórios será disponiblizado pelo professor no AVA
-#### OBS: Esta é uma atividade de grande relevância no contexto do trabalho. Mantenha o foco nos 5 principais relatórios/resultados visando obter o melhor resultado possível.
+[Relatórios no Google Colab](https://colab.research.google.com/drive/1HDbq9VZhicx5eGRgxcLQ9tj3wVxBK0BL?usp=sharing)
    
 <br><br>
 ### 11	AJUSTES DA DOCUMENTAÇÃO, CRIAÇÃO DOS SLIDES E VÍDEO PARA APRESENTAÇAO FINAL <br>
