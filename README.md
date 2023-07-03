@@ -490,7 +490,23 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 
 #### 9.6	CONSULTAS COM INNER JOIN E ORDER BY (Mínimo ~6~(3))<br>
     a) Uma junção que envolva todas as tabelas possuindo no mínimo 2 registros no resultado
-    b) Outras junções que o grupo considere como sendo as de principal importância para o trabalho
+##### Lista de todas as compras/itens
+	select cliente.nome, compra.id as pedido, to_char(compra.data_compra,'DD/MM/YYYY') as data
+		, item.quantidade as qtd, categoria.nome as categoria, marca.nome as marca, produto.nome as produto, 
+		to_char(item.valor,'FM999999999.00') as valor_item, to_char(item.quantidade*item.valor,'FM999999999.00') as total_item,
+		to_char((select sum(valor) from item as sub_item where sub_item.id_compra = compra.id),'FM999999999.00') as total_compra
+	from cliente
+		inner join compra on compra.id_cliente = cliente.id 
+		inner join item on item.id_compra = compra.id 
+		inner join produto on item.id_produto = produto.id
+		inner join marca on produto.id_marca = marca.id 
+		inner join categoria on produto.id_categoria = categoria.id 
+		inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
+	order by compra.id
+ ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/2c9be03a-fc66-46c6-ac78-2b25054bb6fa)
+
+    b) Outras 2 junções que o grupo considere como sendo as de principal importância para o trabalho
+    
 
 #### 9.7	CONSULTAS COM GROUP BY E FUNÇÕES DE AGRUPAMENTO (Mínimo 6)<br>
     a) Criar minimo 2 envolvendo algum tipo de junção
