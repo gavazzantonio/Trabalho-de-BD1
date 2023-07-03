@@ -5,6 +5,7 @@ Trabalho desenvolvido durante a disciplina de BD1
 ### 1. COMPONENTES<br>
 Antonio Felipe Gavazza: gavazzantonio@gmail.com 
 
+<br><br>
 ### 2. INTRODUÇÃO E MOTIVAÇÃO<br>
 > A motivação por trás do Stock&Shop é proporcionar uma solução abrangente para empresas que buscam gerenciar seu estoque de forma eficiente, ao mesmo tempo em que integram suas operações de venda física e online. Esse tipo de integração se tornou fundamental para atender às expectativas dos clientes, oferecer uma experiência de compra consistente e maximizar as oportunidades de vendas.
 > <br><br>
@@ -12,6 +13,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 > <br><br> 
 > Além disso, o Stock&Shop oferece recursos para monitorar o desempenho de vendas, rastrear pedidos, gerar relatórios e análises de estoque e vendas, facilitando a tomada de decisões estratégicas. Com uma visão integrada de seu estoque, vendas e clientes, as empresas podem identificar tendências, ajustar seus inventários de acordo com a demanda, otimizar seus processos logísticos e desenvolver campanhas melhor direcionadas.
 
+<br><br>
 ### 3. MINI-MUNDO
 > O sistema Stock&Shop, gerencia diferentes estruturas da empresa e suas respectivas características. Temos os funcionários da loja, que são identificados por um ID único, assim como todos os elementos dentro do sistema, e do funcionário, são armazenados também o nome, email, telefone e a sua ocupação. Também temos os clientes, que têm um ID, e precisamos armazenar o CPF, nome, email, telefone e data de nascimento.
 > <br><br>
@@ -23,11 +25,13 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 > <br><br>
 > E temos, para utilização do sistema, o registro de usuários que podem estar atrelado a um cliente ou funcionário. Cada usuário tem um ID, nome de usuário, senha e pode ter diferentes papéis no sistema, como comprador, operador ou gerente. Um cliente ou funcionário só pode ser vinculado a um único usuário.
 
+<br><br>
 ### 4.PROTOTIPAÇÃO, PERGUNTAS A SEREM RESPONDIDAS E TABELA DE DADOS:
 #### 4.1 RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS):
 ![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/images/balsamiq.png?raw=true "Title")
 ![Arquivo PDF do Protótipo Balsamiq feito para Smart Shop](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/arquivos/smartshop.pdf?raw=true "Smart Shop")
- 
+
+ <br><br>
 #### 4.2 QUAIS PERGUNTAS PODEM SER RESPONDIDAS COM O SISTEMA PROPOSTO?
 > O Stock&Shop fornece, inicialmente, os seguintes relatórios:
 * Relatório de vendas por período  -  apresenta informações sobre os pedidos realizados em um determinado período, incluindo o valor total das vendas, a quantidade de produtos vendidos e as informações dos clientes.
@@ -36,14 +40,17 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 * Relatório de produtos mais vendidos  -  lista os produtos que tiveram maior volume de vendas em um determinado período, fornecendo informações sobre o produto, a quantidade vendida, o valor total arrecadado.
 * Relatório de retorno de produtos  -  fornece informações sobre os produtos devolvidos, o motivo da devolução, o número de devoluções por período, o valor total dos produtos devolvidos.
 
+<br><br>
 #### 4.3 TABELA DE DADOS DO SISTEMA:
     a) Esta tabela deve conter todos os atributos do sistema e um mínimo de 10 linhas/registros de dados.
 ![Tabela de dados do sistema Stock&Shop](https://github.com/discipbd1/trab01/blob/master/arquivos/TabelaEmpresaDevCom_sample.xlsx?raw=true "Tabela - Empresa Devcom")
 
+<br><br>
 ### 5. MODELO CONCEITUAL:
 #### 5.1 Diagrama
 ![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/conceitual%20v1752.png "Modelo Conceitual")
 
+<br><br>
 #### 5.2 Descrição dos dados 
     FUNCIONARIO: Tabela que armazena as informações relativas aos funcionários da empresa.
     id: campo que armazena o ID único do funcionário.
@@ -121,16 +128,20 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
     operador: campo que indica se o usuário possui o papel de operador (verdadeiro ou falso).
     gerente: campo que indica se o usuário possui o papel de gerente (verdadeiro ou falso).
 
+<br><br>
 ### 6	MODELO LÓGICO
 ![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/images/logico%20v1803.png "Modelo Lógico")
-        
-##    OBSERVAÇÃO DO PROFESSOR
-> Por sugestão do professor, foi adotado um modelo lógico/físico menor do que apresentado anteriormente, que será identifciado abaixo. Também foi insruido pelo professor, uma vez que este trabalho está sendo executado de forma individual, a adoção de metade das instruções solicitadas nos tópicos.
 
+<br><br>
+##    OBSERVAÇÃO DO PROFESSOR
+* Por sugestão do professor, foi adotado um modelo lógico/físico menor do que apresentado anteriormente, que será identifciado abaixo. Também foi insruido pelo professor, uma vez que este trabalho está sendo executado de forma individual, a adoção de metade das instruções solicitadas nos tópicos.
+
+<br><br>
 ### 5. MODELO CONCEITUAL:
 #### 5.1 Diagrama
 ![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/images/conceitual%20v6263.png "Modelo Conceitual")
 
+<br><br>
 #### 5.2 Descrição dos dados 
     CLIENTE: Tabela que armazena as informações relativas aos clientes da empresa.
     id: ID único do cliente.
@@ -168,9 +179,11 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
     valor: Valor do item praticado no dia da compra.
     quantidade: Quantidade do item.
 
+<br><br>
 ### 6	MODELO LÓGICO
 ![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/images/logico%20v6263.png "Modelo Lógico")
 
+<br><br>
 ### 7	MODELO FÍSICO
     create table CLIENTE(
         id integer primary key,
@@ -233,6 +246,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
           on update cascade
     );
 
+<br><br>
 ### 8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
     insert into CLIENTE (id, cpf, nome, email, telefone, nascimento, endereco_cep, endereco_logradouro, endereco_numero, endereco_bairro, endereco_cidade, endereco_estado)
     values
@@ -315,10 +329,8 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
         (7, 9, 30, 1),
        	(2, 10, 2599.99, 2);
 
-> simulando a atualização de valores no dia 14/06/2023
 
-
-
+<br><br>
 ### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
     Tabela CLIENTE
     select * from CLIENTE order by id
@@ -344,10 +356,12 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
     select * from CATEGORIA order by id
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/012acaac-abad-423c-b34c-2e25fb0ae11a)
 
+<br><br>
 #### 9.1	CONSULTAS DAS TABELAS COM TODOS OS DADOS INSERIDOS (Todas) <br>
 
 ># Marco de Entrega 01: Do item 1 até o item 9.1<br>
 
+<br><br>
 #### 9.2	CONSULTAS DAS TABELAS COM FILTROS WHERE (Mínimo ~4~(2))<br>
 ##### Leads de clientes do estado de São Paulo
     select nome, email, telefone
@@ -361,6 +375,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
     where id_categoria is null
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/cfc14166-dd3a-473e-ad14-e31d43e879cd)
 
+<br><br>
 #### 9.3	CONSULTAS QUE USAM OPERADORES LÓGICOS, ARITMÉTICOS E TABELAS OU CAMPOS RENOMEADOS (Mínimo ~11~(6))
     a) Criar 3 consultas que envolvam os operadores lógicos AND, OR e Not
 ##### Leads de clientes que moram na cidade de Rio de Janeiro, no estado de RJ
@@ -402,6 +417,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 		    on categoria.id_categoria = categoria_mae.id 
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/b93b5533-344c-4ff4-b8a0-a61c3453199b)
 
+<br><br>
 #### 9.4	CONSULTAS QUE USAM OPERADORES LIKE E DATAS (Mínimo ~12~(6)) <br>
     a) Criar outras 2 consultas que envolvam like ou ilike
 ##### Leads dos clientes que possuem o nome/sobrenome Santos
@@ -454,6 +470,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 	group by extract(month from nascimento)
  ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/92e3703e-53b9-44c9-afe3-fe0608e76bc3)
 
+<br><br>
 #### 9.5	INSTRUÇÕES APLICANDO ATUALIZAÇÃO E EXCLUSÃO DE DADOS (Mínimo ~6~(3))<br>
     a) Criar minimo 2 de exclusão
 ##### Exclusão dos dados de um cliente cujo id = 9 (consulta na tabela CLIENTE após atualização)
@@ -487,7 +504,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
   	select * from CLIENTE order by id
  ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/368f5a02-e70b-4434-aa5a-9a73533a0511)
 
-
+<br><br>
 #### 9.6	CONSULTAS COM INNER JOIN E ORDER BY (Mínimo ~6~(3))<br>
     a) Uma junção que envolva todas as tabelas possuindo no mínimo 2 registros no resultado
 ##### Lista de todas as compras/itens
@@ -506,21 +523,83 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
  ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/2c9be03a-fc66-46c6-ac78-2b25054bb6fa)
 
     b) Outras 2 junções que o grupo considere como sendo as de principal importância para o trabalho
-    
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-#### 9.7	CONSULTAS COM GROUP BY E FUNÇÕES DE AGRUPAMENTO (Mínimo 6)<br>
+<br><br>
+#### 9.7	CONSULTAS COM GROUP BY E FUNÇÕES DE AGRUPAMENTO (Mínimo ~6~(3))<br>
     a) Criar minimo 2 envolvendo algum tipo de junção
+##### Quantidade de itens comprados e valor total gasto por cliente
+	select nome, sum(quantidade) as itens_comprado, 
+		to_char(sum(valor),'999999999.00') as total_gasto
+	from cliente
+		inner join compra on compra.id_cliente = cliente.id 
+		inner join item on item.id_compra = compra.id 
+	group by nome
+ ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/b6a00f2c-35c4-48c2-8155-f03b6d1f0fac)
 
-#### 9.8	CONSULTAS COM LEFT, RIGHT E FULL JOIN (Mínimo 4)<br>
+##### Quantidade de clientes por cidade
+	select endereco_cidade as cidade, endereco_estado as UF, count(*)
+	from cliente
+	group by endereco_cidade, endereco_estado
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/809e58ce-f7ab-4750-a205-87a0d75f38c3)
+
+##### Quantidades de produtos por categoria
+	select categoria_mae.nome as categoria, categoria.nome as subcategoria, count(*) as qtd
+	from categoria 
+		inner join produto on produto.id_categoria = categoria.id 
+		inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
+	group by categoria_mae.nome, categoria.nome
+	order by categoria_mae.nome
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/c7cc6d3e-a230-4196-9755-106f612eb63f)
+
+<br><br>
+#### 9.8	CONSULTAS COM LEFT, RIGHT E FULL JOIN (Mínimo ~4~(2))<br>
     a) Criar minimo 1 de cada tipo
 
-#### 9.9	CONSULTAS COM SELF JOIN E VIEW (Mínimo 6)<br>
+<br><br>
+#### 9.9	CONSULTAS COM SELF JOIN E VIEW (Mínimo ~6~(3))<br>
         a) Uma junção que envolva Self Join (caso não ocorra na base justificar e substituir por uma view)
-        b) Outras junções com views que o grupo considere como sendo de relevante importância para o trabalho
+        b) Uma junções com views que o grupo considere como sendo de relevante importância para o trabalho
 
-#### 9.10	SUBCONSULTAS (Mínimo 4)<br>
-     a) Criar minimo 1 envolvendo GROUP BY
-     b) Criar minimo 1 envolvendo algum tipo de junção
+<br><br>
+#### 9.10	SUBCONSULTAS (Mínimo ~4~(2))<br>
+     a) Criar 1 envolvendo GROUP BY
+##### Lista de produtos vendidos com quantidade vendida, a inflação entre valores praticados em vendas anteriores e o valor atual e a quantidade em estoque
+	select categoria_mae.nome as categoria, categoria.nome as subcategoria, marca.nome as marca, produto.nome as produto,
+		(select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id) as qtd_vendido, 
+		to_char(produto.valor,'FM999999999.00') as valor_atual,
+		round((produto.valor / (select min(valor) from item as sub_item where sub_item.id_produto = produto.id)-1)*100)||'%' as inflação, 
+		produto.quantidade - (select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id) as qtd_estoque
+	from compra 
+		inner join item on item.id_compra = compra.id 
+		inner join produto on item.id_produto = produto.id
+		inner join marca on produto.id_marca = marca.id 
+		inner join categoria on produto.id_categoria = categoria.id 
+		inner join categoria as categoria_mae on categoria.id_categoria = categoria_mae.id
+	group by categoria_mae.nome, categoria.nome, marca.nome, produto.nome, produto.valor,
+		(select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id),
+		round((produto.valor / (select min(valor) from item as sub_item where sub_item.id_produto = produto.id)-1)*100)||'%',
+		produto.quantidade - (select sum(quantidade) from item as sub_item where sub_item.id_produto = produto.id)
+	order by categoria_mae.nome, categoria.nome, marca.nome
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/cc785a17-da8d-410c-9af3-7293ea339b9d)
+
+     b) Criar 1 envolvendo algum tipo de junção
+##### Lista as categorias e, para cada uma, a quantidade de itens vendidos e o valor de faturamento
+	select categoria.nome as categoria, 
+		(	select sum(sub_item.quantidade) 
+			from item as sub_item inner join produto as sub_produto on sub_item.id_produto = sub_produto.id 
+			where sub_produto.id_categoria = categoria.id
+		) as qtd_vendido,
+		to_char(
+			(	select sum(sub_item.valor) 
+				from item as sub_item inner join produto as sub_produto on sub_item.id_produto = sub_produto.id 
+				where sub_produto.id_categoria = categoria.id
+			), 'FM999999999.00'
+		) as faturamento
+	from categoria
+	where id_categoria is not null
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/7c32d565-0924-4260-8f29-5c8e3f5e8e8f)
 
 ># Marco de Entrega 02: Do item 9.2 até o ítem 9.10<br>
 
