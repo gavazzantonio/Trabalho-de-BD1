@@ -332,6 +332,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 
 <br><br>
 ### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
+#### 9.1	CONSULTAS DAS TABELAS COM TODOS OS DADOS INSERIDOS (Todas) <br>
     Tabela CLIENTE
     select * from CLIENTE order by id
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/d18ffd64-105e-47df-a49d-b554c5ac3ed4)
@@ -355,9 +356,6 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
     Tabela CATEGORIA
     select * from CATEGORIA order by id
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/012acaac-abad-423c-b34c-2e25fb0ae11a)
-
-<br><br>
-#### 9.1	CONSULTAS DAS TABELAS COM TODOS OS DADOS INSERIDOS (Todas) <br>
 
 ># Marco de Entrega 01: Do item 1 até o item 9.1<br>
 
