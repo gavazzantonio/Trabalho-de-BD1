@@ -317,12 +317,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 
 > simulando a atualização de valores no dia 14/06/2023
 
-    update produto set valor = 3999 where id = 1;
-    update produto set valor = 2599.99 where id = 2;
-    update produto set valor = 3499.99 where id = 3;
-    update produto set valor = 4700 where id = 4;
-    update produto set valor = 449.99 where id = 5;
-    update produto set valor = 475 where id = 6
+
 
 ### 9	TABELAS E PRINCIPAIS CONSULTAS<br>
     Tabela CLIENTE
@@ -422,12 +417,78 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/892f0dc4-a793-4b70-b87a-d9a1dc018346)
 
     b) Criar 4 consultas com funções data apresentada.
+#### Lista de clientes que realizaram compras na 2ª quinzena de julho/2023
+	select compra.id, nome, to_char(data_compra,'DD/MM/YYYY') as data
+	from compra inner join cliente on id_cliente = cliente.id
+	where data_compra >= '2023-06-15'
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/4600d713-fb1a-4c3e-8a42-51d82b9dd87e)
+ 
+#### Leads de clientes ordenado pela idade
+	select nome, date_part('year',age(current_date, nascimento)) as idade, email, telefone
+	from CLIENTE
+	order by nascimento desc
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/719be6bd-86aa-4f86-afec-02cd9816c4e8)
 
-#### 9.5	INSTRUÇÕES APLICANDO ATUALIZAÇÃO E EXCLUSÃO DE DADOS (Mínimo 6)<br>
-    a) Criar minimo 3 de exclusão
-    b) Criar minimo 3 de atualização
+#### Lista de compras realizadas com indicação do cliente, compra anterior e dias entre compras do mesmo cliente
+	select nome, data_compra, 
+		(
+			select sub_compra.data_compra
+			from compra as sub_compra
+			where sub_compra.id_cliente = compra.id_cliente and sub_compra.data_compra < compra.data_compra
+			limit 1
+		) as ultima_compra,
+		date_part('day',age(data_compra,
+		(
+			select sub_compra.data_compra
+			from compra as sub_compra
+			where sub_compra.id_cliente = compra.id_cliente and sub_compra.data_compra < compra.data_compra
+			limit 1
+		))) as dias_entre_compras
+	from compra inner join cliente on id_cliente = cliente.id
+	order by data_compra
+ ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/c4212346-0d90-482f-be9d-0a1eff87bbc2)
 
-#### 9.6	CONSULTAS COM INNER JOIN E ORDER BY (Mínimo 6)<br>
+##### Quantidade de clientes aniversariantes por mês (atualização 9.5.b.3 realizada anterior a esta consulta)
+	select extract(month from nascimento) as mês, count(*) as qtd
+	from cliente
+	group by extract(month from nascimento)
+ ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/92e3703e-53b9-44c9-afe3-fe0608e76bc3)
+
+#### 9.5	INSTRUÇÕES APLICANDO ATUALIZAÇÃO E EXCLUSÃO DE DADOS (Mínimo ~6~(3))<br>
+    a) Criar minimo 2 de exclusão
+##### Exclusão dos dados de um cliente cujo id = 9 (consulta na tabela CLIENTE após atualização)
+	delete from cliente where id = 9;
+	select * from CLIENTE order by id
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/d1ce804d-fa30-41b3-baa7-549472d442ff)
+
+##### Exclusão da subcategoria 'Futebol' (consulta na tabela CATEGORIA após atualização)
+	delete from CATEGORIA where nome = 'Futebol';
+	select * from CATEGORIA order by id
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/b713539c-b86e-450f-abf0-a6b579f1e10d)
+
+    b) Criar minimo 2 de atualização
+##### Atualização de valores de alguns produtos (consulta na tabela PRODUTO após atualização)
+    update produto set valor = 3999 where id = 1;
+    update produto set valor = 2599.99 where id = 2;
+    update produto set valor = 3499.99 where id = 3;
+    update produto set valor = 4700 where id = 4;
+    update produto set valor = 449.99 where id = 5;
+    update produto set valor = 475 where id = 6;
+    select * from PRODUTO order by id
+![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/21da729e-f1d9-42b0-997e-54c0d29c7f01)
+
+##### Atualização da categoria principal 'Esportes' para uma subcategoria da categoria 'Roupas'
+	update CATEGORIA set id_categoria = 5 where id = 9;
+	select * from CATEGORIA order by id
+ ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/994d1174-7bfd-4b04-8030-51fe773e19bd)
+
+ ##### Atualização de data de aniversário de cliente (consulta na tabela CLIENTE após atualização)
+ 	update cliente set nascimento = '1995-08-05' where id = 5;
+  	select * from CLIENTE order by id
+ ![image](https://github.com/gavazzantonio/Trabalho-de-BD1/assets/94766580/368f5a02-e70b-4434-aa5a-9a73533a0511)
+
+
+#### 9.6	CONSULTAS COM INNER JOIN E ORDER BY (Mínimo ~6~(3))<br>
     a) Uma junção que envolva todas as tabelas possuindo no mínimo 2 registros no resultado
     b) Outras junções que o grupo considere como sendo as de principal importância para o trabalho
 
