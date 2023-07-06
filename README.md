@@ -179,6 +179,10 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 ![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/images/logico%20v6263.png "Modelo Lógico")
 
 <br><br>
+##    OBSERVAÇÃO DO PROFESSOR
+* Em uma nova revisão realziado pelo professor, foi sugerido a não inclusão dos campos valor na relação Contém e quantidade na entidade PRODUTO por questão de redundância, já que há melhores soluções para registro de histórico de valor e estoque que ficaram fora do escopo deste trabalho, entretanto, para realizar determinadas consultas neste trabalho, estes campos foram mantidos nos modelos.
+
+<br><br>
 ### 7	MODELO FÍSICO
 ```sql
 create table CLIENTE(
