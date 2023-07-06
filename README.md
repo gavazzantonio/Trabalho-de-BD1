@@ -753,7 +753,9 @@ order by categoria_mae.nome, categoria.nome, marca.nome
 ### 11	AJUSTES DA DOCUMENTAÇÃO, CRIAÇÃO DOS SLIDES E VÍDEO PARA APRESENTAÇAO FINAL <br>
 
 #### a) Modelo (pecha kucha)<br>
+[Slides de Apresentação](https://ifesedubr-my.sharepoint.com/:p:/g/personal/antonio_gavazza_estudante_ifes_edu_br/EYcw6Fve58dJqnz4zxYkxGAB-0QEGhmrW3-5bLXvol0Gzg?e=ykHtv6)
 #### b) Tempo de apresentação 6:40 
+* Foi apresentado presencialmente ao professor em sala de aula.
 
 ># Marco de Entrega 03: Itens 10 e 11   <br><br>      <br><br>   
 
