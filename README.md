@@ -41,14 +41,9 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 * Relatório de retorno de produtos  -  fornece informações sobre os produtos devolvidos, o motivo da devolução, o número de devoluções por período, o valor total dos produtos devolvidos.
 
 <br><br>
-#### 4.3 TABELA DE DADOS DO SISTEMA:
-    a) Esta tabela deve conter todos os atributos do sistema e um mínimo de 10 linhas/registros de dados.
-![Tabela de dados do sistema Stock&Shop](https://github.com/discipbd1/trab01/blob/master/arquivos/TabelaEmpresaDevCom_sample.xlsx?raw=true "Tabela - Empresa Devcom")
-
-<br><br>
 ### 5. MODELO CONCEITUAL:
 #### 5.1 Diagrama
-![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/conceitual%20v1752.png "Modelo Conceitual")
+![Modelo Conceitual](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/images/conveitual%20v6.jpg "Modelo Conceitual")
 
 <br><br>
 #### 5.2 Descrição dos dados 
