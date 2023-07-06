@@ -29,7 +29,7 @@ Antonio Felipe Gavazza: gavazzantonio@gmail.com
 ### 4.PROTOTIPAÇÃO, PERGUNTAS A SEREM RESPONDIDAS E TABELA DE DADOS:
 #### 4.1 RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS):
 ![Alt text](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/images/balsamiq.png?raw=true "Title")
-![Arquivo PDF do Protótipo Balsamiq feito para Smart Shop](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/arquivos/smartshop.pdf?raw=true "Smart Shop")
+![Arquivo PDF do Protótipo Balsamiq](https://github.com/gavazzantonio/Trabalho-de-BD1/blob/master/arquivos/prototipo.pdf?raw=true "Protótipo")
 
  <br><br>
 #### 4.2 QUAIS PERGUNTAS PODEM SER RESPONDIDAS COM O SISTEMA PROPOSTO?
